@@ -45,7 +45,6 @@ class Player
     stars.reject! do |star|
       if Gosu.distance(@x, @y, star.x, star.y) < 35
         @score += 10
-        @beep.play
         true
       else
         false

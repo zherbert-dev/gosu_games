@@ -1,6 +1,7 @@
-require 'app/gosu'
-require 'app/player'
-require 'app/star'
+require 'gosu'
+require_relative 'player'
+require_relative 'star'
+require_relative 'z-order'
 
 class Tutorial < Gosu::Window
     def initialize
