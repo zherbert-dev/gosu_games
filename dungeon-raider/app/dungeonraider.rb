@@ -24,17 +24,18 @@ class DungeonRaider < Gosu::Window
           @player.move_right
         end
     
-        if Gosu.button_down? Gosu::KB_SPACE 
-          @player.jump
-          sleep(1)
-          @player.land
+        if Gosu.button_down? Gosu::KB_UP 
+          @player.move_forward
+        end
+
+        if Gosu.button_down? Gosu::KB_DOWN 
+          @player.move_backward
         end
     end
   
     def draw
+      #fires 60 x per sec
         @player.draw
-        #redraw the background image every 60 secs
-        #draw(x,y,z)
     end
 
     # Helpers

@@ -1,10 +1,10 @@
 class Monster
-    def initialize
+    module Type
+        DEMON = 'demon'
     end
     
-    def move
-    end
-
-    def attack
+    def initialize(attack, name)
+        @attack = attack
+        @name = name
     end
 end

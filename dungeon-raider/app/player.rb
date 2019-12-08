@@ -21,12 +21,12 @@ class Player
     @x += 1.0
   end
 
-  def jump
-    @y += 1.0
+  def move_forward
+    @y -= 1.0
   end
 
-  def land
-    @y -= 1.0
+  def move_backward
+    @y += 1.0
   end
 
   def draw
