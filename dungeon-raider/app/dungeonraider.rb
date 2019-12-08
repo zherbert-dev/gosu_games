@@ -18,19 +18,19 @@ class DungeonRaider < Gosu::Window
     end
   
     def update
-        if Gosu.button_down? Gosu::KB_LEFT or Gosu::button_down? Gosu::GP_LEFT
-          @player.turn_left
+        if Gosu.button_down? Gosu::KB_LEFT
+          @player.move_left
         end
     
-        if Gosu.button_down? Gosu::KB_RIGHT or Gosu::button_down? Gosu::GP_RIGHT
-          @player.turn_right
+        if Gosu.button_down? Gosu::KB_RIGHT
+          @player.move_right
         end
     
-        if Gosu.button_down? Gosu::KB_UP or Gosu::button_down? Gosu::GP_BUTTON_0
-          @player.accelerate
+        if Gosu.button_down? Gosu::KB_SPACE 
+          @player.jump
+          sleep(1)
+          @player.land
         end
-        
-        @player.move
     end
   
     def draw

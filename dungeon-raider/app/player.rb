@@ -13,27 +13,20 @@ class Player
     @x, @y = x, y
   end
   
-  def turn_left
-    @angle -= 4.5
+  def move_left
+    @x -= 1.0
   end
   
-  def turn_right
-    @angle += 4.5
+  def move_right
+    @x += 1.0
   end
-  
-  def accelerate
-    @vel_x += Gosu.offset_x(@angle, 0.5)
-    @vel_y += Gosu.offset_y(@angle, 0.5)
+
+  def jump
+    @y += 2.0
   end
-  
-  def move
-    @x += @vel_x
-    @y += @vel_y
-    @x %= 640
-    @y %= 480
-    
-    @vel_x *= 0.95
-    @vel_y *= 0.95
+
+  def land
+    @y -= 2.0
   end
 
   def draw
@@ -48,7 +41,6 @@ class Player
   end
 
   def consume_item(item)
-    if item.cosumable? && @health < 100
-    end
+
   end
 end
