@@ -3,16 +3,14 @@ require_relative 'bag'
 require_relative 'food'
 require_relative 'monster'
 require_relative 'player'
-require_relative 'z-order'
 require "./lib/assets"
-
 
 class DungeonRaider < Gosu::Window
     def initialize
         super 640, 480
         self.caption = "Dungeon Scroller"
 
-        #inti player object
+        #init player object
         @player = Player.new(Assets::PLAYER, 100, 10, 0)
         @player.warp(320, 240)
     end

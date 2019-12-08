@@ -22,11 +22,11 @@ class Player
   end
 
   def jump
-    @y += 2.0
+    @y += 1.0
   end
 
   def land
-    @y -= 2.0
+    @y -= 1.0
   end
 
   def draw
