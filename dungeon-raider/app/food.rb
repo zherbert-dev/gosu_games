@@ -4,6 +4,7 @@ require_relative 'item'
 class Food < Item
     def initialize
         super
+        
         case name
         when name == 'cheese'
             @food_skin = Assets::CHEESE
@@ -21,8 +22,9 @@ class Food < Item
             @food_skin = Assets::RED_APPLE
             @health_points = 20
         end
+    end
 
-        def draw
-        end
+    def draw
+    
     end
 end
