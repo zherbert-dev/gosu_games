@@ -9,9 +9,6 @@ class DungeonRaider < Gosu::Window
     def initialize
         super 640, 480
         self.caption = "Dungeon Scroller"
-
-        #init dungeon map
-        @map = DungeonMap.new("assets/map/map.txt")
         
         #init player object
         @player = Player.new(Assets::PLAYER, 100, 10, 0)
@@ -39,8 +36,8 @@ class DungeonRaider < Gosu::Window
         end
 
         #camera following player
-        @camera_x = [[@player.x - WIDTH / 2, 0].max, @map.width * 50 - WIDTH].min
-        @camera_y = [[@player.y - HEIGHT / 2, 0].max, @map.height * 50 - HEIGHT].min
+        #@camera_x = [[@player.x - WIDTH / 2, 0].max, @map.width * 50 - WIDTH].min
+        #@camera_y = [[@player.y - HEIGHT / 2, 0].max, @map.height * 50 - HEIGHT].min
     end
   
     def draw
