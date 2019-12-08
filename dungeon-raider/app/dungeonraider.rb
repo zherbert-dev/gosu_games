@@ -7,15 +7,20 @@ require "./lib/assets"
 
 class DungeonRaider < Gosu::Window
     def initialize
-        super 640, 480
-        self.caption = "Dungeon Scroller"
+      super 640, 480
+      self.caption = "Dungeon Scroller"
 
-        #init player object
-        @player = Player.new(Assets::KNIGHT, 100, 10, 0)
-        @player.warp(320, 240)
+      #init player object
+      @player = Player.new(Assets::KNIGHT, 100, 10, 0)
+      @player.warp(320, 240)
+    
+      #init camera
+      @camera_x = @camera_y = 0
     end
   
     def update
+        #fires 60 x per sec
+
         if Gosu.button_down? Gosu::KB_LEFT
           @player.move_left
         end
@@ -34,7 +39,6 @@ class DungeonRaider < Gosu::Window
     end
   
     def draw
-      #fires 60 x per sec
       @player.draw
     end
 
