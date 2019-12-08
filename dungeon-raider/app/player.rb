@@ -40,7 +40,12 @@ class Player
     end
   end
 
-  def consume_item(item)
-
+  def consume_item(food_item)
+    addable_health = food_item.health_points
+    if adable_health + @health > 100
+      @health = 100
+    else
+      @health += addable_health
+    end
   end
 end

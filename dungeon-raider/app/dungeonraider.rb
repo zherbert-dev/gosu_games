@@ -1,9 +1,9 @@
+require "./lib/assets"
 require 'gosu'
 require_relative 'bag'
 require_relative 'food'
 require_relative 'monster'
 require_relative 'player'
-require "./lib/assets"
 
 class DungeonRaider < Gosu::Window
     def initialize
@@ -35,7 +35,7 @@ class DungeonRaider < Gosu::Window
   
     def draw
       #fires 60 x per sec
-        @player.draw
+      @player.draw
     end
 
     # Helpers
