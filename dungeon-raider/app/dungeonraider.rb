@@ -1,21 +1,18 @@
-require "./lib/assets"
 require 'gosu'
 require_relative 'bag'
 require_relative 'food'
 require_relative 'monster'
 require_relative 'player'
+require "./lib/assets"
 
 class DungeonRaider < Gosu::Window
     def initialize
         super 640, 480
         self.caption = "Dungeon Scroller"
-        
-        #init player object
-        @player = Player.new(Assets::PLAYER, 100, 10, 0)
-        @player.warp(320, 240)
 
-        #init camera
-        @camera_x = @camera_y = 0
+        #init player object
+        @player = Player.new(Assets::KNIGHT, 100, 10, 0)
+        @player.warp(320, 240)
     end
   
     def update
@@ -34,10 +31,6 @@ class DungeonRaider < Gosu::Window
         if Gosu.button_down? Gosu::KB_DOWN 
           @player.move_backward
         end
-
-        #camera following player
-        #@camera_x = [[@player.x - WIDTH / 2, 0].max, @map.width * 50 - WIDTH].min
-        #@camera_y = [[@player.y - HEIGHT / 2, 0].max, @map.height * 50 - HEIGHT].min
     end
   
     def draw
