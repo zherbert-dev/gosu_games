@@ -1,5 +1,3 @@
-require "./lib/sprites"
-
 class Monster
     def initialize
     end

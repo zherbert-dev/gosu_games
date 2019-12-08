@@ -1,5 +1,3 @@
-require "./lib/sprites"
-
 class Bag
     def initialize(capacity)
         Array.new(capacity)

@@ -1,6 +1,4 @@
-require "./lib/sprites"
-
-class Food
+class Food < Item
     def initialize
     end
 

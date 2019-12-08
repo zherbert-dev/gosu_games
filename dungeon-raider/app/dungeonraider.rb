@@ -4,7 +4,7 @@ require_relative 'food'
 require_relative 'monster'
 require_relative 'player'
 require_relative 'z-order'
-require "./lib/sprites"
+require "./lib/assets"
 
 
 class DungeonRaider < Gosu::Window
@@ -13,7 +13,7 @@ class DungeonRaider < Gosu::Window
         self.caption = "Dungeon Scroller"
 
         #inti player object
-        @player = Player.new(Sprites::PLAYER, 100, 10, 0)
+        @player = Player.new(Assets::PLAYER, 100, 10, 0)
         @player.warp(320, 240)
     end
   
