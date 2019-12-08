@@ -1,6 +1,10 @@
 class Player
-  def initialize
-    @image = Gosu::Image.new("./media/starfighter.bmp")
+  def initialize(sprite_skin, health, bag_capacity, items_count)
+    @sprite_skin = sprite_skin
+    @health = health
+    @bag_capacity = bag_capacity
+    @items_count = items_count
+    @bag = Bag.new(@bag_capacity)
     @x = @y = @vel_x = @vel_y = @angle = 0.0
     @score = 0
   end
@@ -33,22 +37,18 @@ class Player
   end
 
   def draw
-    @image.draw_rot(@x, @y, 1, @angle)
+    @sprite_skin.draw_rot(@x, @y, 1, @angle)
   end
 
   #HELPERS
-  def score
-    @score
+  def add_item_to_bag(item)
+    if @items_count < @bag_capacity
+      @bag.add_item(item)
+    end
   end
 
-  def collect_stars(stars)
-    stars.reject! do |star|
-      if Gosu.distance(@x, @y, star.x, star.y) < 35
-        @score += 10
-        true
-      else
-        false
-      end
+  def consume_item(item)
+    if item.cosumable? && @health < 100
     end
   end
 end
