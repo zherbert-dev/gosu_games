@@ -10,9 +10,15 @@ class DungeonRaider < Gosu::Window
         super 640, 480
         self.caption = "Dungeon Scroller"
 
+        #init dungeon map
+        @map = DungeonMap.new("assets/map/map.txt")
+        
         #init player object
         @player = Player.new(Assets::PLAYER, 100, 10, 0)
         @player.warp(320, 240)
+
+        #init camera
+        @camera_x = @camera_y = 0
     end
   
     def update
@@ -31,6 +37,10 @@ class DungeonRaider < Gosu::Window
         if Gosu.button_down? Gosu::KB_DOWN 
           @player.move_backward
         end
+
+        #camera following player
+        @camera_x = [[@player.x - WIDTH / 2, 0].max, @map.width * 50 - WIDTH].min
+        @camera_y = [[@player.y - HEIGHT / 2, 0].max, @map.height * 50 - HEIGHT].min
     end
   
     def draw
