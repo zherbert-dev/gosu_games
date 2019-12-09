@@ -14,11 +14,11 @@ class DungeonRaider < Gosu::Window
       self.caption = "Dungeon Explorer"
 
       #init map
-      @map = Map.new("assets/dungeon_map.txt")
+      @map = Map.new("assets/simple_dungeon_map.txt")
 
       #init player object
-      @player = Player.new(Assets::KNIGHT, 100, 10, 0)
-      @player.warp(320, 240)
+      @player = Player.new(@map, Assets::KNIGHT, 100, 10, 0)
+      @player.warp(100, 100)
     
       #init camera
       @camera_x = @camera_y = 0
