@@ -1,4 +1,6 @@
 class Player
+  attr_reader :x, :y
+  
   def initialize(sprite_skin, health, bag_capacity, items_count)
     @sprite_skin = sprite_skin
     @health = health
