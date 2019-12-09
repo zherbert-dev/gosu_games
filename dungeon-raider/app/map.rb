@@ -6,7 +6,7 @@ class Map
 
     def initialize(map_file)
         # Load 60x60 tiles, 5px overlap in all four directions.
-        @tileset = Gosu::Image.load_tiles("assets/tileset.png", 16, 16, tileable: true)
+        @tileset = Gosu::Image.load_tiles("assets/temp_tileset.png", 60, 60, tileable: true)
 
         lines = File.readlines(map_file).map { |line| line.chomp }
         @height = lines.size
