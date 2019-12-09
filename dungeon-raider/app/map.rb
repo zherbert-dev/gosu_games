@@ -1,11 +1,12 @@
 require "./lib/tiles"
+require "./lib/assets"
 
 class Map
     attr_reader :width, :height
 
     def initialize(map_file)
         # Load 60x60 tiles, 5px overlap in all four directions.
-        @tileset = Gosu::Image.load_tiles("./assets/tileset.png", 60, 60, tileable: true)
+        @tileset = Gosu::Image.load_tiles("assets/tileset.png", 16, 16, tileable: true)
 
         lines = File.readlines(map_file).map { |line| line.chomp }
         @height = lines.size
