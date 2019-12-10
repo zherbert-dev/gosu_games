@@ -43,6 +43,7 @@ class Map
 
     # Solid at a given pixel position?
     def solid?(x, y)
+      #may want to consider how to tell if the tile is wall and not path
         y < 0 || @tiles[x / 50][y / 50]
     end
 end

@@ -17,31 +17,23 @@ class DungeonRaider < Gosu::Window
       @map = Map.new("assets/dungeon_map.txt")
 
       #init player object
-      @player = Player.new(@map, Assets::KNIGHT, 100, 10, 0)
-      @player.warp(500, 500)
+      @player = Player.new(@map, 500, 500, Assets::KNIGHT, 100, 10, 0)
     
       #init camera
       @camera_x = @camera_y = 0
     end
   
     def update
-        #fires 60 x per sec
+        move_x = 0
+        move_y = 0
 
-        if Gosu.button_down? Gosu::KB_LEFT
-          @player.move_left
-        end
-    
-        if Gosu.button_down? Gosu::KB_RIGHT
-          @player.move_right
-        end
-    
-        if Gosu.button_down? Gosu::KB_UP 
-          @player.move_forward
-        end
+        move_x -= 1 if Gosu.button_down? Gosu::KB_LEFT
+        move_x += 1 if Gosu.button_down? Gosu::KB_RIGHT
+        move_y -= 1 if Gosu.button_down? Gosu::KB_UP
+        move_y += 1 if Gosu.button_down? Gosu::KB_DOWN
 
-        if Gosu.button_down? Gosu::KB_DOWN 
-          @player.move_backward
-        end
+        #call player moving
+        @player.update(move_x, move_y)
 
         # Scrolling follows player
         @camera_x = [[@player.x - WIDTH / 2, 0].max, @map.width * 50 - WIDTH].min

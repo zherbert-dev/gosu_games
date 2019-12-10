@@ -1,47 +1,73 @@
 class Player
   attr_reader :x, :y
 
-  def initialize(map, sprite_skin, health, bag_capacity, items_count)
+  def initialize(map, x, y, sprite_skin, health, bag_capacity, items_count)
     @map = map
-    @sprite_skin = sprite_skin
     @health = health
     @bag_capacity = bag_capacity
     @items_count = items_count
     @bag = Bag.new(@bag_capacity)
-    @x = @y = @vel_x = @vel_y = @angle = 0.0
     @score = 0
 
-    # Load all animation frames
-    # Implement later
-    # refer to https://github.com/gosu/gosu-examples/blob/master/examples/cptn_ruby.rb
-    # @standing, @walk1, @walk2, @jump = *Gosu::Image.load_tiles("media/cptn_ruby.png", 50, 50)
-  end
-
-  def warp(x, y)
+    #positional and direction initilization
     @x, @y = x, y
-  end
-  
-  def move_left
-    @x -= 1.0 if can_fit?(-1, 0)
-  end
-  
-  def move_right
-    @x += 1.0 if can_fit?(1, 0)
-  end
-
-  def move_forward
-    @y -= 1.0 if can_fit?(0, -1)
-  end
-
-  def move_backward
-    @y += 1.0 if can_fit?(0, 1)
+    @dir = :right
+    
+    # Load all animation/skin frames
+    # refer to https://github.com/gosu/gosu-examples/blob/master/examples/cptn_ruby.rb
+    # @standing, @walk1, @walk2 = *Gosu::Image.load_tiles("assets/sprite_skins.png", 50, 50)
+    
+    #set starting sprite frame
+    @cur_image = sprite_skin
   end
 
   def draw
-    @sprite_skin.draw_rot(@x, @y, 1, @angle)
+    # Flip vertically when facing to the left.
+    if @dir == :right
+      offs_x = -25
+      factor = 1.0
+    else
+      offs_x = 25
+      factor = -1.0
+    end
+    @cur_image.draw(@x + offs_x, @y - 49, 0, factor, 1.0)
   end
 
-  #HELPERS
+  def update(move_x, move_y)
+    # Select image depending on action
+    # if (move_x == 0)
+    #   @cur_image = @standing
+    # else
+    #   @cur_image = (Gosu.milliseconds / 175 % 2 == 0) ? @walk1 : @walk2
+    # end
+    # if (@vy < 0)
+    #   @cur_image = @jump
+    # end
+    
+    # Directional walking, horizontal movement
+    if move_x > 0
+      @dir = :right
+      move_x.times { if can_fit?(1, 0) then @x += 1 end }
+    end
+
+    if move_x < 0
+      @dir = :left
+      (-move_x).times { if can_fit?(-1, 0) then @x -= 1 end }
+    end
+
+    if move_y > 0
+      @dir = @dir
+      move_y.times { if can_fit?(0, 0) then @y += 1 end }
+    end
+
+    if move_y < 0
+      @dir = @dir
+      (-move_y).times { if can_fit?(0, 0) then @y -= 1 end }
+    end
+
+  end
+
+  ### HELPERS #####
   
   # Could the object be placed at x + offs_x/y + offs_y without being stuck?
   def can_fit?(offs_x, offs_y)
