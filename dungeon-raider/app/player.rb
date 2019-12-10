@@ -18,6 +18,7 @@ class Player
     # @standing, @walk1, @walk2 = *Gosu::Image.load_tiles("assets/sprite_skins.png", 50, 50)
     
     #set starting sprite frame
+    # once the above is implemented this will change to @standing/@idle_down
     @cur_image = sprite_skin
   end
 
