@@ -13,6 +13,11 @@ class DungeonRaider < Gosu::Window
       super WIDTH, HEIGHT
       self.caption = "Dungeon Explorer"
 
+      #init menu
+      #@menu = Menu.new(self) #instantiate the menu, passing the Window in the constructor
+      #@menu.add_item(Gosu::Image.new(self, "item.png", false), 100, 200, 1, lambda { self.close }, Gosu::Image.new(self, "item_hover.png", false))
+      #@menu.add_item(Gosu::Image.new(self, "item2.png", false), 100, 250, 1, lambda { puts "something" }, Gosu::Image.new(self, "item2_hover.png", false))
+
       #init map
       @map = Map.new("assets/dungeon_map.txt")
 
@@ -22,6 +27,7 @@ class DungeonRaider < Gosu::Window
     
       #init camera
       @camera_x = @camera_y = 0
+
     end
   
     def update
